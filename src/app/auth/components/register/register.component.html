@@ -36,13 +36,17 @@
                 formControlName="password"
               >
             </fieldset><!-- /.form-group -->
-
             <button
               type="submit"
               class="btn btn-lg btn-primary pull-xs-right"
-              [disabled]="registerForm.invalid"
+              [disabled]="registerForm.invalid || (isSubmitting$ | async)"
             >
-              Sign up
+              <span *ngIf="!(isSubmitting$ | async); else loader">Sign up</span>
+              <!-- loader -->
+              <ng-template #loader>
+                <span>Loading...</span>
+              </ng-template>
+              <!-- /loader -->
             </button>
           </fieldset>
         </form>
