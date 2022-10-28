@@ -6,6 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 // Modules
 import { AuthRoutingModule } from './auth-routing.module';
+import { BackendErrorsMessagesModule } from '../shared/modules/backend-errors-messages/backend-errors-messages.module';
 
 // Components
 import { RegisterComponent } from './components/register/register.component';
@@ -28,7 +29,8 @@ import { registerReducer } from './store/reducers/register.reducer';
     ReactiveFormsModule,
     StoreModule.forFeature('auth', registerReducer),
     EffectsModule.forFeature([RegisterEffect]),
-    AuthRoutingModule
+    AuthRoutingModule,
+    BackendErrorsMessagesModule
   ],
   providers: [
     AuthService
