@@ -13,6 +13,7 @@ import { RegisterComponent } from './components/register/register.component';
 
 // Services
 import { AuthService } from './services/auth.service';
+import { PersistenceService } from '../shared/services/persistence.service';
 
 // Effects
 import { RegisterEffect } from './store/effects/register.effect';
@@ -33,7 +34,8 @@ import { registerReducer } from './store/reducers/register.reducer';
     BackendErrorsMessagesModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    PersistenceService
   ]
 })
 export class AuthModule { }
