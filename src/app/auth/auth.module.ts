@@ -19,6 +19,7 @@ import { PersistenceService } from '../shared/services/persistence.service';
 // Effects
 import { RegisterEffect } from './store/effects/register.effect';
 import { LoginEffect } from './store/effects/login.effect';
+import { GetCurrentUserEffect } from './store/effects/get-current-user.effect';
 
 // Reducers
 import { authReducer } from './store/reducers/auth.reducer';
@@ -32,7 +33,7 @@ import { authReducer } from './store/reducers/auth.reducer';
     CommonModule,
     ReactiveFormsModule,
     StoreModule.forFeature('auth', authReducer),
-    EffectsModule.forFeature([RegisterEffect, LoginEffect]),
+    EffectsModule.forFeature([RegisterEffect, LoginEffect, GetCurrentUserEffect]),
     AuthRoutingModule,
     BackendErrorsMessagesModule
   ],
