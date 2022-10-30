@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 // Modules
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
+import { TopNavbarModule } from './shared/modules/top-navbar/top-navbar.module';
 
 // Components
 import { AppComponent } from './app.component';
@@ -29,7 +30,8 @@ import { AppComponent } from './app.component';
       autoPause: true
     }),
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+    TopNavbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
