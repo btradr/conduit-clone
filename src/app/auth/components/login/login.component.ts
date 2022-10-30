@@ -3,22 +3,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { registerAction } from '../../store/actions/register.action';
+import { loginAction } from '../../store/actions/login.action';
 import { isSubmittingSelector, backendErrorsSelector } from '../../store/selectors/auth.selector';
 import { AppStateInterface } from '../../../shared/types/app-state.interface';
-import { RegisterRequestInterface } from '../../types/register-request.interface';
+import { LoginRequestInterface } from '../../types/login-request.interface';
 import { BackendErrorsInterface } from '../../../shared/types/backend-errors.interface';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html'
+  selector: 'app-login',
+  templateUrl: './login.component.html'
 })
-export class RegisterComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
-  public registerForm: FormGroup;
+  public loginForm: FormGroup;
 
   public isSubmitting$: Observable<boolean>;
-  public backendErrors$: Observable<BackendErrorsInterface | null>;
+  public backendErrors$: Observable<BackendErrorsInterface>;
 
   public constructor(
     private fb: FormBuilder,
@@ -31,11 +31,11 @@ export class RegisterComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    const request: RegisterRequestInterface = {
-      user: this.registerForm.value
+    const request: LoginRequestInterface = {
+      user: this.loginForm.value
     };
 
-    this.store.dispatch(registerAction({ request: request }));
+    this.store.dispatch(loginAction({ request: request }));
   }
 
   private initializeValues(): void {
@@ -44,8 +44,7 @@ export class RegisterComponent implements OnInit {
   }
 
   private initializeForm(): void {
-    this.registerForm = this.fb.group({
-      username: ['', [Validators.required]],
+    this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });

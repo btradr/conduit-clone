@@ -10,6 +10,7 @@ import { BackendErrorsMessagesModule } from '../shared/modules/backend-errors-me
 
 // Components
 import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 // Services
 import { AuthService } from './services/auth.service';
@@ -17,19 +18,21 @@ import { PersistenceService } from '../shared/services/persistence.service';
 
 // Effects
 import { RegisterEffect } from './store/effects/register.effect';
+import { LoginEffect } from './store/effects/login.effect';
 
 // Reducers
-import { registerReducer } from './store/reducers/register.reducer';
+import { authReducer } from './store/reducers/auth.reducer';
 
 @NgModule({
   declarations: [
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('auth', registerReducer),
-    EffectsModule.forFeature([RegisterEffect]),
+    StoreModule.forFeature('auth', authReducer),
+    EffectsModule.forFeature([RegisterEffect, LoginEffect]),
     AuthRoutingModule,
     BackendErrorsMessagesModule
   ],

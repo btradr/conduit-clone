@@ -1,0 +1,51 @@
+<div class="auth-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center">Sign in</h1>
+
+        <p class="text-xs-center">
+          <a [routerLink]="['/register']">Need an account?</a>
+        </p>
+
+        <app-backend-errors-messages
+          *ngIf="backendErrors$ | async"
+          [backendErrors]="backendErrors$ | async"
+        ></app-backend-errors-messages>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <fieldset>
+            <fieldset class="form-group">
+              <input
+                type="email"
+                class="form-control form-control-lg"
+                placeholder="Email"
+                formControlName="email"
+              >
+            </fieldset><!-- /.form-group -->
+            <fieldset class="form-group">
+              <input
+                type="password"
+                class="form-control form-control-lg"
+                placeholder="Password"
+                formControlName="password"
+              >
+            </fieldset><!-- /.form-group -->
+            <button
+              type="submit"
+              class="btn btn-primary btn-lg pull-xs-right"
+              [disabled]="loginForm.invalid || (isSubmitting$ | async)"
+            >
+              <span *ngIf="!(isSubmitting$ | async); else loader">Sign up</span>
+              <!-- loader -->
+              <ng-template #loader>
+                <span>Loading...</span>
+              </ng-template>
+              <!-- /loader -->
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div><!-- /.row -->
+  </div><!-- /.container /.page -->
+</div><!-- /.auth-page -->
