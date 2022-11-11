@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { TopNavbarModule } from './shared/modules/top-navbar/top-navbar.module';
+import { GlobalFeedModule } from './global-feed/global-feed.module';
 
 // Components
 import { AppComponent } from './app.component';
@@ -42,7 +43,8 @@ const AUTH_INTERCEPTOR = {
     }),
     AppRoutingModule,
     AuthModule,
-    TopNavbarModule
+    TopNavbarModule,
+    GlobalFeedModule
   ],
   providers: [
     PersistenceService,
