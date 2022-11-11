@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -14,6 +14,17 @@ import { TopNavbarModule } from './shared/modules/top-navbar/top-navbar.module';
 
 // Components
 import { AppComponent } from './app.component';
+
+// Services
+import { PersistenceService } from './shared/services/persistence.service';
+import { AuthInterceptor } from './shared/services/auth.interceptor';
+
+// Interceptors
+const AUTH_INTERCEPTOR = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: AuthInterceptor,
+  multi: true
+};
 
 @NgModule({
   declarations: [
@@ -33,7 +44,10 @@ import { AppComponent } from './app.component';
     AuthModule,
     TopNavbarModule
   ],
-  providers: [],
+  providers: [
+    PersistenceService,
+    AUTH_INTERCEPTOR
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
